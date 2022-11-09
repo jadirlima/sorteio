@@ -1,0 +1,11 @@
+/build/
+/dist/
+/venv/
+/app.py
+/interface_logo.py
+/logo.png
+/main.exe
+/main.spec
+/mais.spec
+/selecionar arquivo.py
+/timer.py
