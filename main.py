@@ -54,13 +54,13 @@ class app():
         self.bt_resetar.place(relx=0.3, rely=0.1, relwidth=0.15, relheight=0.05)
 
         self.frame_2 = Frame(self.root, bd=4, bg='#dfe3ee', highlightbackground='#759fe6', highlightthickness=2)
-        self.frame_2.place(relx=0.09, rely=0.8, relwidth=0.8, relheight=0.15)
+        self.frame_2.place(relx=0.09, rely=0.87, relwidth=0.8, relheight=0.09)
 
         self.resultado = StringVar()
         self.resetar()
         self.resultado1 = Label(self.root, textvariable=self.resultado,
                                 fg="Gold", bg='#778899', justify="left", font=("Arial",16,'bold'))
-        self.resultado1.place(relx=0.15, rely=0.85, relwidth=0.7)
+        self.resultado1.place(relx=0.15, rely=0.89, relwidth=0.7)
 
 
 
