@@ -67,7 +67,7 @@ class app():
 
     def resetar(self):
         self.bt_sortear['state'] = NORMAL
-        return self.resultado.set("-----------------------------------------------------")
+        return self.resultado.set("-".center(150,'-'))
 
     def sortear(self):
         # sleep(1)
@@ -78,19 +78,15 @@ class app():
                 servidores = pd.read_excel(arquivo)
                 lista_servidores = (servidores.iloc[:, 0])
                 self.bt_sortear['state'] = DISABLED
-                return self.resultado.set(lista_servidores[random.randrange(len(lista_servidores))])
+                sortedo = lista_servidores[random.randrange(len(lista_servidores))]
+                sortedo= str(sortedo)
+                sortedo=" [ "+sortedo.upper()+" ] "
+                return self.resultado.set(sortedo.center(150,'-'))
             except FileNotFoundError:
                 showinfo(title='Mensagem de Erro', message="Não foi possível identificar o arquivo de dados")
         except ValueError as excecao:
             showinfo(title='Mensagem de Erro', message="Arquivo inválido")
 
-
-
-
-        # except SystemExit:
-        #     raise
-        # except:
-        #     showinfo(title='Erro', message="Arquivo inválido")
 
     def select_file(self):
         filename = fd.askopenfilename(title='Selecione o arquivo', initialdir='/', filetypes=[("Excel files", "*.xlsx; *.xls")])
