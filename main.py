@@ -76,14 +76,11 @@ class app():
         try:
             try:
                 servidores = pd.read_excel(arquivo)
-            except FileNotFoundError:
-                showinfo(title='Mensagem de Erro', message="Não foi possível identificar o arquivo de dados")
-            try:
-                lista_servidores = servidores['target']
+                lista_servidores = (servidores.iloc[:, 0])
                 self.bt_sortear['state'] = DISABLED
                 return self.resultado.set(lista_servidores[random.randrange(len(lista_servidores))])
-            except:
-                showinfo(title='Mensagem de Erro', message="Erro ao ler a coluna target")
+            except FileNotFoundError:
+                showinfo(title='Mensagem de Erro', message="Não foi possível identificar o arquivo de dados")
         except ValueError as excecao:
             showinfo(title='Mensagem de Erro', message="Arquivo inválido")
 
@@ -96,7 +93,7 @@ class app():
         #     showinfo(title='Erro', message="Arquivo inválido")
 
     def select_file(self):
-        filename = fd.askopenfilename(title='Selecione o arquivo', initialdir='/')
+        filename = fd.askopenfilename(title='Selecione o arquivo', initialdir='/', filetypes=[("Excel files", "*.xlsx; *.xls")])
         return self.pp1.set(filename)
 
 app()
