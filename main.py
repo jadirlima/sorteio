@@ -72,21 +72,35 @@ class app():
     def sortear(self):
         # sleep(1)
         arquivo = self.pp1.get()
+
         try:
-            servidores = pd.read_excel(arquivo)
-            lista_servidores = servidores['target']
-            self.bt_sortear['state'] = DISABLED
-            return self.resultado.set(lista_servidores[random.randrange(len(lista_servidores))])
-        except SystemExit:
-            raise
-        except:
-            showinfo(title='Erro', message="Arquivo inválido")
+            try:
+                servidores = pd.read_excel(arquivo)
+            except FileNotFoundError:
+                showinfo(title='Mensagem de Erro', message="Não foi possível identificar o arquivo de dados")
+            try:
+                lista_servidores = servidores['target']
+                self.bt_sortear['state'] = DISABLED
+                return self.resultado.set(lista_servidores[random.randrange(len(lista_servidores))])
+            except:
+                showinfo(title='Mensagem de Erro', message="Erro ao ler a coluna target")
+        except ValueError as excecao:
+            showinfo(title='Mensagem de Erro', message="Arquivo inválido")
+
+
+
+
+        # except SystemExit:
+        #     raise
+        # except:
+        #     showinfo(title='Erro', message="Arquivo inválido")
 
     def select_file(self):
         filename = fd.askopenfilename(title='Selecione o arquivo', initialdir='/')
         return self.pp1.set(filename)
 
 app()
+
 
 
 
